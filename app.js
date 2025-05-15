@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 
 app.use(cors());
 //add cors checking
-app.options('*', cors());
+app.options('/*', cors());
 
 
 //add this checking
