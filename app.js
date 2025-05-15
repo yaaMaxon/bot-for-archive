@@ -8,7 +8,17 @@ const port = 3004
 const bot = require("./botInstance");
 
 app.use(bodyParser.json());
+
+
 app.use(cors());
+//add cors checking
+app.options('*', cors());
+
+//add this part of code
+app.post(`/bot${process.env.TG_BOT_TOKEN}`, (req, res) => {
+  bot.processUpdate(req.body);
+  res.sendStatus(200);
+});
 
 bot.on('message', (msg) => {
   console.log("Your chat ID is:", msg.chat.id);
@@ -44,7 +54,7 @@ ${message}
 })
 
 // setInterval(() => {
-//   https.get("https://***.onrender.com");
+//   https.get("https://bot-for-archive.onrender.com");
 // }, 45000);
 
 app.listen(port, () => {
