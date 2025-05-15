@@ -3,16 +3,22 @@ const bodyParser = require('body-parser')
 const cors = require('cors');
 const app = express()
 
-const port = 3004
+// const port = 3004
+process.env.PORT || 3000;
 
 const bot = require("./botInstance");
 
 app.use(bodyParser.json());
 
-
 app.use(cors());
 //add cors checking
 app.options('*', cors());
+
+
+//add this checking
+app.get("/", (req, res) => {
+  res.send("Bot server is running.");
+});
 
 //add this part of code
 app.post(`/bot${process.env.TG_BOT_TOKEN}`, (req, res) => {
@@ -26,10 +32,11 @@ bot.on('message', (msg) => {
 
 app.post('/requests', (req, res) => {
    const { name, phone, message } = req.body;
-
+   
   if (!name || !phone || !message) {
     return res.status(400).send('Missing required fields');
   }
+
 const text = `
 📬 *Новий запит на послуги*
 
