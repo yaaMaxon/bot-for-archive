@@ -10,10 +10,8 @@ const port = process.env.PORT || 3000;
 const bot = require("./botInstance");
 
 app.use(bodyParser.json());
-
 app.use(cors());
-//add cors checking
-app.options('/*', cors());
+
 
 
 //add this checking
