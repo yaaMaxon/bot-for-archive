@@ -4,7 +4,8 @@ const cors = require('cors');
 const app = express()
 
 // const port = 3004
-process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
+
 
 const bot = require("./botInstance");
 
@@ -32,7 +33,7 @@ bot.on('message', (msg) => {
 
 app.post('/requests', (req, res) => {
    const { name, phone, message } = req.body;
-   
+
   if (!name || !phone || !message) {
     return res.status(400).send('Missing required fields');
   }
