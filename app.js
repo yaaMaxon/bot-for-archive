@@ -53,6 +53,11 @@ ${message}
     });
 })
 
+//chacking is server runnig
+app.get('/', (req, res) => {
+  res.send('Bot server is running.');
+});
+
 // setInterval(() => {
 //   https.get("https://bot-for-archive.onrender.com");
 // }, 45000);
