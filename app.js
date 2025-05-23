@@ -4,26 +4,13 @@ const cors = require('cors');
 const app = express()
 
 // const port = 3004
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3004;
 
 
 const bot = require("./botInstance");
 
 app.use(bodyParser.json());
 app.use(cors());
-
-
-
-//add this checking
-app.get("/", (req, res) => {
-  res.send("Bot server is running.");
-});
-
-//add this part of code
-app.post(`/bot${process.env.TG_BOT_TOKEN}`, (req, res) => {
-  bot.processUpdate(req.body);
-  res.sendStatus(200);
-});
 
 bot.on('message', (msg) => {
   console.log("Your chat ID is:", msg.chat.id);
@@ -59,9 +46,9 @@ ${message}
     });
 })
 
-// setInterval(() => {
-//   https.get("https://bot-for-archive.onrender.com");
-// }, 45000);
+setInterval(() => {
+  https.get("https://bot-for-archive.onrender.com");
+}, 45000);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
